@@ -1,11 +1,15 @@
 .bg-dark {
-	background-color: #111;
+	/* background-color: #111; */
 	height: 100vh;
-	overflow: hidden;
 }
 
-.container {
+/* .container {
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
+} */
+
+.navbar {
+	padding: 10px 0;
+	border-bottom: 1px solid #444;
 }
