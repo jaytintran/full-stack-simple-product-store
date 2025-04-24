@@ -46,14 +46,16 @@ const HomePage = () => {
 							buy later. It's like a wishlist board for your favorite products.
 						</Text>
 
-						<Button
-							colorScheme="yellow"
-							size="md"
-							_hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
-							transition="all 0.2s"
-						>
-							All Products You Have Saved
-						</Button>
+						<Link href="/products">
+							<Button
+								colorScheme="yellow"
+								size="md"
+								_hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
+								transition="all 0.2s"
+							>
+								All Products You Have Saved
+							</Button>
+						</Link>
 					</Box>
 
 					<Box maxW={{ base: "100%", lg: "40%" }}>

@@ -28,3 +28,27 @@ export const categories = [
 		path: "/products?category=home",
 	},
 ];
+
+export const dummyProducts = [
+	{
+		id: 1,
+		name: "Product 1",
+		image:
+			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0533%2F2089%2Ffiles%2Fplaceholder-images-product-5_large.png%3Fv%3D1530129458&f=1&nofb=1&ipt=6d340da9ec96e1156bca15d67cf843bc915c578ce9f53dd673930670c25644af",
+		price: "$10.00",
+	},
+	{
+		id: 2,
+		name: "Product 2",
+		image:
+			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0533%2F2089%2Ffiles%2Fplaceholder-images-product-5_large.png%3Fv%3D1530129458&f=1&nofb=1&ipt=6d340da9ec96e1156bca15d67cf843bc915c578ce9f53dd673930670c25644af",
+		price: "$20.00",
+	},
+	{
+		id: 3,
+		name: "Product 3",
+		image:
+			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0533%2F2089%2Ffiles%2Fplaceholder-images-product-5_large.png%3Fv%3D1530129458&f=1&nofb=1&ipt=6d340da9ec96e1156bca15d67cf843bc915c578ce9f53dd673930670c25644af",
+		price: "$30.00",
+	},
+];

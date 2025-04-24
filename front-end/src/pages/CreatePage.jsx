@@ -18,11 +18,17 @@ const CreatePage = () => {
 	const [newProduct, setNewProduct] = useState({
 		name: "",
 		price: "",
+		url: "",
 		image: "",
 		category: "",
-		stock: "",
 		description: "",
 	});
+
+	const handleAddProduct = (e) => {
+		e.preventDefault();
+		// Implement your logic to add the product here
+		console.log(newProduct);
+	};
 
 	return (
 		<Container maxW="container.xl" py={8}>
@@ -61,6 +67,18 @@ const CreatePage = () => {
 						</SimpleGrid>
 
 						<FormControl isRequired>
+							<FormLabel>URL to Buy</FormLabel>
+							<Input
+								placeholder="Enter product URL"
+								name="url"
+								value={newProduct.url}
+								onChange={(e) =>
+									setNewProduct({ ...newProduct, url: e.target.value })
+								}
+							/>
+						</FormControl>
+
+						<FormControl isRequired>
 							<FormLabel>Image URL</FormLabel>
 							<Input
 								placeholder="Enter image URL"
@@ -85,19 +103,6 @@ const CreatePage = () => {
 						</FormControl>
 
 						<FormControl isRequired>
-							<FormLabel>Stock</FormLabel>
-							<Input
-								type="number"
-								placeholder="Enter stock quantity"
-								name="stock"
-								value={newProduct.stock}
-								onChange={(e) =>
-									setNewProduct({ ...newProduct, stock: e.target.value })
-								}
-							/>
-						</FormControl>
-
-						<FormControl isRequired>
 							<FormLabel>Description</FormLabel>
 							<Textarea
 								placeholder="Enter product description"
@@ -116,6 +121,8 @@ const CreatePage = () => {
 							w={{ base: "100%", md: "auto" }}
 							alignSelf="flex-end"
 							mt={4}
+							type="submit"
+							onClick={handleAddProduct}
 						>
 							Add Product
 						</Button>

@@ -29,13 +29,13 @@ const Navbar = () => {
 					}}
 				>
 					<NavLink to="/">
-						<Link>
+						<span>
 							{colorMode === "light" ? (
 								<Image src={logoDark} alt="Click & Shop" width="100px" />
 							) : (
 								<Image src={logo} alt="Click & Shop" width="100px" />
 							)}
-						</Link>
+						</span>
 					</NavLink>
 
 					<HStack spacing={2} alignItems={"center"}>
