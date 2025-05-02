@@ -10,11 +10,16 @@ import {
 	SimpleGrid,
 	Link,
 	VStack,
+	Divider,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { categories } from "../constants/data";
+// import { useProductStore } from "../store/product";
 
 const HomePage = () => {
+	// const bears = useProductStore((state) => state.bears);
+	// const increase = useProductStore((state) => state.increasePopulation);
+
 	return (
 		<Box
 			position="relative"
@@ -72,6 +77,14 @@ const HomePage = () => {
 						/>
 					</Box>
 				</Stack>
+
+				<Divider my={12} />
+
+				{/* Bears Counter Zustand */}
+				{/* <Box align="center" justify="space-between">
+					<Button onClick={increase}>Add Bear</Button>
+					<p>Bear count: {bears}</p>
+				</Box> */}
 
 				{/* Bentos / Categories Section */}
 				<Heading as="h2" size="lg" mb={6}>
