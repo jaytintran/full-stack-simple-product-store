@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 
+import path from "path";
+
 import productRoutes from "./routes/product.route.js"; // Importing all the routes from the product route file.
 
 dotenv.config();
@@ -15,6 +17,8 @@ const PORT = process.env.PORT || 5000;
 
 // CORS middleware
 app.use(cors());
+
+const __dirname = path.resolve();
 
 // Middleware are functions that have access to the request object (req), the response object (res), and the next function in the application's request-response cycle.
 // Middleware acts like checkpoints or filters that handle things before the final response arrives or the request arrives to the back-end.
