@@ -1,5 +1,7 @@
 # 🚀 MERN Product List Store
 
+![image](https://github.com/user-attachments/assets/a14acd56-7d72-42c6-82be-523eeeabf69a)
+
 A **full-stack Product List Store** built using the **MERN (MongoDB, Express.js, React, Node.js) stack**. This app allows users to manage a list of products, including adding, editing, deleting, and viewing details.
 
 ## 🛠 Tech Stack
