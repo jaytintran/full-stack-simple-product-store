@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 // const PORT = process.env.PORT;
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // CORS middleware
 app.use(cors());
@@ -30,6 +30,15 @@ app.use(express.json());
 // To test the API routes we need a front-end or Postman (or any other tool that can make HTTP requests)
 // Use the routes defined in the product.routes.js file.
 app.use("/api/products", productRoutes);
+
+// Check for the environtment if it's production, then serve the static files from the front-end/dist folder
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "/front-end/dist")));
+
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "front-end", "dist", "index.html"));
+	});
+}
 
 app.listen(PORT, () => {
 	connectDB();
