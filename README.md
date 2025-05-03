@@ -11,6 +11,8 @@ A **full-stack Product List Store** built using the **MERN (MongoDB, Express.js,
 - **React.js** – A powerful JavaScript library for building interactive UIs. React enables fast rendering and a seamless user experience using reusable components and a virtual DOM.
 - **React Router** – Handles client-side routing, allowing for smooth navigation between pages without reloading the browser.
 - **Axios** – A promise-based HTTP client for making API requests to the backend.
+- **Chakra UI** – A modern component library for React that provides accessible and customizable UI components.
+- **Zustand** – A small, fast, and scalable state-management solution for React applications.
 
 ### **Backend**
 
@@ -30,7 +32,8 @@ A **full-stack Product List Store** built using the **MERN (MongoDB, Express.js,
 - **Why?**: Keeps sensitive information like database credentials, API keys, and secret tokens out of the codebase.
 - **Usage**:
   ```js
-  require("dotenv").config();
+  import dotenv from "dotenv";
+  dotenv.config();
   const dbURI = process.env.MONGO_URI;
   ```
   This ensures configuration settings are **secure** and **easily configurable** across different environments.
@@ -46,15 +49,57 @@ A **full-stack Product List Store** built using the **MERN (MongoDB, Express.js,
 - **Usage**:
 
   ```js
-  const mongoose = require("mongoose");
+  import mongoose from "mongoose";
 
   const ProductSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    category: String,
+  	name: String,
+  	price: Number,
+  	category: String,
   });
 
   const Product = mongoose.model("Product", ProductSchema);
+  ```
+
+### **3. Chakra UI**
+
+- **Purpose**: Provides a set of accessible and customizable React components.
+- **Why?**: Speeds up UI development with pre-built, responsive components that can be easily styled.
+- **Key Features**:
+  - Accessible components
+  - Customizable theme
+  - Responsive design support
+- **Usage**:
+
+  ```jsx
+  import { Button, Box } from "@chakra-ui/react";
+
+  function MyComponent() {
+  	return (
+  		<Box>
+  			<Button colorScheme="blue">Click me</Button>
+  		</Box>
+  	);
+  }
+  ```
+
+### **4. Zustand**
+
+- **Purpose**: Provides a simple and flexible state management solution.
+- **Why?**: Offers a more straightforward alternative to Redux for managing global state in React applications.
+- **Key Features**:
+  - Minimal boilerplate
+  - Easy to understand and use
+  - Works with React hooks
+- **Usage**:
+
+  ```js
+  import create from "zustand";
+
+  const useStore = create((set) => ({
+  	products: [],
+  	addProduct: (product) =>
+  		set((state) => ({ products: [...state.products, product] })),
+  }));
   ```
 
 ## 🚀 Getting Started
@@ -68,23 +113,13 @@ cd mern-product-list-store
 
 ### **2. Install Dependencies**
 
-#### Backend
-
 ```sh
-cd backend
-npm install
-```
-
-#### Frontend
-
-```sh
-cd frontend
 npm install
 ```
 
 ### **3. Setup Environment Variables**
 
-Create a `.env` file in the `backend` directory:
+Create a `.env` file in the root directory:
 
 ```sh
 MONGO_URI=your_mongodb_connection_string
@@ -93,15 +128,16 @@ PORT=5000
 
 ### **4. Run the Application**
 
-#### Backend
+For development:
 
 ```sh
-npm start
+npm run dev
 ```
 
-#### Frontend
+For production:
 
 ```sh
+npm run build
 npm start
 ```
 
@@ -113,5 +149,8 @@ Go to: `http://localhost:3000/`
 
 ✅ Add, Edit, Delete Products  
 ✅ View Product Details  
-✅ Responsive UI with React  
-✅ Backend API with Express & MongoDB
+✅ Responsive UI with React and Chakra UI  
+✅ Backend API with Express & MongoDB  
+✅ Global State Management with Zustand  
+✅ Environment Variable Configuration  
+✅ Production-ready Build Process
