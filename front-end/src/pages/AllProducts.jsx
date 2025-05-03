@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Container, Heading, Text, SimpleGrid, Link } from "@chakra-ui/react";
 import ProductCard from "../components/ProductCard";
 import { useProductStore } from "../store/product";
-import { useToast } from "@chakra-ui/react";
 
 const AllProducts = () => {
 	const { products, fetchProducts } = useProductStore();
