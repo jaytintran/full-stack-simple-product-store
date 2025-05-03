@@ -1,18 +1,8 @@
 import React, { useEffect } from "react";
-import {
-	Container,
-	Box,
-	Flex,
-	Heading,
-	Text,
-	Image,
-	SimpleGrid,
-	Link,
-	Button,
-} from "@chakra-ui/react";
-// import { dummyProducts } from "../constants/data";
+import { Container, Heading, Text, SimpleGrid, Link } from "@chakra-ui/react";
+import ProductCard from "../components/ProductCard";
 import { useProductStore } from "../store/product";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { useToast } from "@chakra-ui/react";
 
 const AllProducts = () => {
 	const { products, fetchProducts } = useProductStore();
@@ -22,12 +12,10 @@ const AllProducts = () => {
 		fetchProducts();
 	}, [fetchProducts]);
 
-	console.log(products);
-
 	// Delete event handler
 	const deleteProduct = async (id) => {
 		try {
-			const response = await fetch(`http://localhost:5001/api/products/${id}`, {
+			const response = await fetch(`/api/products/${id}`, {
 				method: "DELETE",
 			});
 
@@ -39,6 +27,24 @@ const AllProducts = () => {
 			fetchProducts();
 		} catch (err) {
 			console.error("Error deleting product: ", err);
+		}
+	};
+
+	// Edit event handler
+	const editProduct = async (id) => {
+		try {
+			const response = await fetch(`/api/products/${id}`, {
+				method: "GET",
+			});
+
+			if (!response.ok) {
+				throw new Error("Failed to fetch product");
+			}
+
+			const data = await response.json();
+			console.log(data);
+		} catch (err) {
+			console.error("Error fetching product: ", err);
 		}
 	};
 
@@ -76,74 +82,12 @@ const AllProducts = () => {
 				px={{ base: 4, sm: 0 }}
 			>
 				{products.map((product) => (
-					<Box key={product._id}>
-						<Box
-							position="relative"
-							w="100%"
-							h="200px"
-							overflow="hidden"
-							borderRadius="lg"
-							transition="all 0.3s ease"
-							_hover={{
-								transform: "translateY(-8px)",
-								shadow: "xl",
-							}}
-						>
-							<Link href={`/products/${product._id}`}>
-								<Image
-									src={product.image}
-									alt={product.name}
-									w="100%"
-									h="100%"
-									objectFit="cover"
-									transition="transform 0.5s ease"
-									_groupHover={{ transform: "scale(1.05)" }}
-								/>
-							</Link>
-							<Box
-								position="absolute"
-								bottom="0"
-								left="0"
-								right="0"
-								bg="rgba(0,0,0,0.7)"
-								p={3}
-								color="white"
-								display="flex"
-								justifyContent="space-between"
-								alignItems={"center"}
-							>
-								<Text fontWeight="bold" fontSize="lg" textAlign="center">
-									{product.name}
-								</Text>
-
-								<Flex gap={2}>
-									{/* Delete Icon */}
-									<Button
-										fontWeight="bold"
-										fontSize="lg"
-										textAlign="center"
-										color="red.500"
-										cursor="pointer"
-										onClick={() => deleteProduct(product._id)}
-									>
-										<DeleteIcon />
-									</Button>
-
-									{/* Edit Icon */}
-									<Button
-										fontWeight="bold"
-										fontSize="lg"
-										textAlign="center"
-										color="blue.500"
-										cursor="pointer"
-										// onClick={() => editProduct(product._id)}
-									>
-										<EditIcon />
-									</Button>
-								</Flex>
-							</Box>
-						</Box>
-					</Box>
+					<ProductCard
+						key={product._id}
+						product={product}
+						deleteProduct={deleteProduct}
+						editProduct={editProduct}
+					/>
 				))}
 			</SimpleGrid>
 		</Container>

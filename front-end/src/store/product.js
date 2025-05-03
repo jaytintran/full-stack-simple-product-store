@@ -18,7 +18,7 @@ export const useProductStore = create((set) => ({
 
 		// Send a POST request to the server to create a new product
 		try {
-			const response = await fetch("http://localhost:5001/api/products", {
+			const response = await fetch("/api/products", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -64,6 +64,27 @@ export const useProductStore = create((set) => ({
 			set({ products: data.data });
 		} catch (error) {
 			console.error("Error in fetchProducts:", error);
+		}
+	},
+	deleteProductById: async (id) => {
+		try {
+			const response = await fetch(`/api/products/${id}`, {
+				method: "DELETE",
+			});
+			const data = response.json();
+
+			if (!response.ok) {
+				return { success: false, message: data.message };
+			}
+
+			// If the request is successful, remove the product from the local state, update the ui immediately
+			set((state) => ({
+				products: state.products.filter((product) => product._id !== id),
+			}));
+
+			return { success: true, message: data.message };
+		} catch (err) {
+			console.error("Error deleting product: ", err);
 		}
 	},
 }));
