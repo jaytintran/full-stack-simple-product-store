@@ -10,8 +10,10 @@ import {
 	Button,
 	SimpleGrid,
 	useColorModeValue,
+	useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useProductStore } from "../store/product";
 
 const CreatePage = () => {
 	const bgColor = useColorModeValue("white", "gray.800");
@@ -24,10 +26,53 @@ const CreatePage = () => {
 		description: "",
 	});
 
-	const handleAddProduct = (e) => {
+	/* Make a Toast */
+	const toast = useToast();
+
+	/* Destructuring createProduct function from useProductStore Zustand 
+		The reason why we only destructuring the createProduct, because in useProductStore there're more state functions that we don't need.
+	*/
+	const { createProduct } = useProductStore();
+
+	const handleAddProduct = async (e) => {
 		e.preventDefault();
-		// Implement your logic to add the product here
-		console.log(newProduct);
+		/* Calling the createProduct function from useProductStore Zustand
+			Indeed we try to get the message variable here, but before resulting the message
+			The createProduct also performs side effect too:
+			1. Sends the new product to the backend API -> 
+			2. Then updating the products array global state.
+		*/
+		const message = await createProduct(newProduct);
+
+		console.log(message.message);
+		console.log(message.success);
+
+		if (message.success === true) {
+			toast({
+				title: "Product Added",
+				description: "Your product has been added successfully",
+				status: "success",
+				duration: 2000,
+				isClosable: true,
+			});
+			// After the product is added, clear the state and form
+			setNewProduct({
+				name: "",
+				price: "",
+				url: "",
+				image: "",
+				category: "",
+				description: "",
+			});
+		} else {
+			toast({
+				title: "Error",
+				description: message.message,
+				status: "error",
+				duration: 2000,
+				isClosable: true,
+			});
+		}
 	};
 
 	return (
