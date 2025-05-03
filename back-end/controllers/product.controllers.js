@@ -17,6 +17,22 @@ export const getAllProducts = async (req, res) => {
 	}
 };
 
+export const getProductById = async (req, res) => {
+	try {
+		const product = await Product.findById(req.params.id);
+		res.status(200).json({
+			success: true,
+			data: product,
+			message: "Success Getting The Product!",
+		});
+	} catch (error) {
+		console.error(error);
+		res
+			.status(500)
+			.json({ success: false, message: "Error in Fetching Products!" });
+	}
+};
+
 export const createProduct = async (req, res) => {
 	const product = req.body; // User will send a JSON object as data
 

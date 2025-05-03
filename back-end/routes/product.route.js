@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 
 import Product from "../models/product.model.js";
 import {
-  createProduct,
-  getAllProducts,
-  updateProduct,
-  deleteProduct,
+	getAllProducts,
+	getProductById,
+	createProduct,
+	updateProduct,
+	deleteProduct,
 } from "../controllers/product.controllers.js";
 
 const router = express.Router();
@@ -19,6 +20,9 @@ router.post("/", createProduct);
 
 // Delete a Product by ID API Endpoint
 router.delete("/:id", deleteProduct);
+
+// Get a Product by ID API Endpoint
+router.get("/:id", getProductById);
 
 // Update a Product by ID API Endpoint
 /* 

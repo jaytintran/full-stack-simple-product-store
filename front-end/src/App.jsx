@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import CreatePage from "./pages/CreatePage";
 import AllProductsPage from "./pages/AllProducts";
 import { useColorModeValue } from "@chakra-ui/react";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/create" element={<CreatePage />} />
 				<Route path="/products" element={<AllProductsPage />} />
+				<Route path="/products/:id" element={<ProductDetail />} />
 			</Routes>
 		</Box>
 	);

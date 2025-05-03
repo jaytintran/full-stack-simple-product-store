@@ -54,4 +54,16 @@ export const useProductStore = create((set) => ({
 			};
 		}
 	},
+	fetchProducts: async () => {
+		try {
+			// Send a GET request to the server to fetch all products
+			// The "http://localhost:5001/api/products" is the API endpoint that we created in the back-end.
+			// And the prefix "http://localhost:5001" is the base URL that we set in the vite.config.js file.
+			const response = await fetch("/api/products");
+			const data = await response.json();
+			set({ products: data.data });
+		} catch (error) {
+			console.error("Error in fetchProducts:", error);
+		}
+	},
 }));
